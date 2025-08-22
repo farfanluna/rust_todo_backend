@@ -1,0 +1,114 @@
+# ===============================================
+# General
+# ===============================================
+
+# Archivos de configuración de entorno local.
+# ¡NUNCA subas tus secretos (API keys, contraseñas de BD) a Git!
+.env
+.env.*
+!.env.example
+
+# Archivos de base de datos local de SQLite.
+# La base de datos en sí no debe estar en el control de versiones, solo las migraciones.
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# Archivos de registro (logs)
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+
+# ===============================================
+# Rust Backend
+# ===============================================
+
+# Directorio de compilación de Cargo.
+# Contiene todos los binarios y dependencias compiladas.
+/target/
+
+# Documentación generada
+/doc/
+
+# Caché de SQLx
+.sqlx/
+
+
+# ===============================================
+# Frontend (Node.js / React / Vue / Svelte)
+# ===============================================
+
+# Dependencias de Node. Se instalan con `npm install` o `yarn install`.
+# Esta carpeta puede pesar cientos de MB.
+/frontend/node_modules/
+
+# Archivos de compilación de producción. Se generan con `npm run build`.
+/frontend/build/
+/frontend/dist/
+
+# Archivos de caché de herramientas de desarrollo
+/frontend/.vite/
+/frontend/.svelte-kit/
+/frontend/.next/
+/frontend/.nuxt/
+
+# Logs específicos del frontend
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
+
+
+# ===============================================
+# Tauri (Aplicación de Escritorio)
+# ===============================================
+
+# Directorio de compilación de Rust dentro de Tauri. Es similar al /target principal.
+/frontend/src-tauri/target/
+
+# Archivos generados por la CLI de Tauri
+/frontend/src-tauri/gen/
+/frontend/src-tauri/bin/
+
+# Artefactos de compilación de la app (instaladores, ejecutables)
+# No se deben guardar en el repositorio.
+/frontend/src-tauri/release/
+/frontend/src-tauri/debug/
+/frontend/src-tauri/bundle/
+/frontend/src-tauri/*.build/
+/frontend/src-tauri/src-tauri.xcodeproj/
+
+
+# ===============================================
+# Configuración de Editores e IDEs
+# ===============================================
+
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+
+# JetBrains (IntelliJ, RustRover, etc.)
+.idea/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+
+# ===============================================
+# Archivos del Sistema Operativo
+# ===============================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
