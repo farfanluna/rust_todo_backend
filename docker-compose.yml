@@ -1,0 +1,27 @@
+services:
+  todo-api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: todo-api
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    environment:
+      - DATABASE_URL=sqlite:/app/backend/todo.db
+      - HOST=0.0.0.0
+    command: sh -c "cd /app/backend && sqlx migrate run && /app/backend/target/release/rust_todo_backend"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "3001:3001"
+    depends_on:
+      - todo-api
+    restart: unless-stopped
+    command: nginx -g 'daemon off;'

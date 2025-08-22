@@ -1,0 +1,1 @@
+-- This migration has been integrated into 0001_init.sql and is intentionally left empty.

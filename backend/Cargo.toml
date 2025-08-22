@@ -1,0 +1,42 @@
+[package]  
+name = "rust_todo_backend"  
+version = "0.2.0"  
+edition = "2021"  
+  
+[dependencies]  
+# Framework Web  
+axum = "0.7"  
+axum-extra = { version = "0.9", features = ["typed-header"] } # Connect-info esta incluido en axum-extra  
+tokio = { version = "1", features = ["full"] }  
+tower-http = { version = "0.5", features = ["cors", "trace", "util"] }
+  
+# Base de Datos  
+sqlx = { version = "0.7", features = ["sqlite", "runtime-tokio", "macros", "chrono"] }  
+  
+# Serialización y Validación
+serde = { version = "1.0", features = ["derive"] }  
+serde_json = "1.0"  
+validator = { version = "0.18", features = ["derive"] }  
+  
+# Autenticación y Seguridad  
+jsonwebtoken = "8"  
+bcrypt = "0.15"
+  
+# Utilidades  
+chrono = { version = "0.4", features = ["serde"] }
+dotenvy = "0.15"  
+thiserror = "1.0"
+async-trait = "0.1"  
+  
+# Documentación de API  
+utoipa = { version = "4", features = ["axum_extras", "chrono"] }  
+utoipa-swagger-ui = { version = "6", features = ["axum"] }  
+  
+# Logging y Tracing  
+tracing = "0.1"  
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+  
+[dev-dependencies]  
+hyper = { version = "1", features = ["full"] }  
+http-body-util = "0.1"  
+tower = { version = "0.4", features = ["util"] }
