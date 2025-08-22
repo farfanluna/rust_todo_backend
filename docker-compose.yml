@@ -10,9 +10,11 @@ services:
       - "3000:3000"
     restart: unless-stopped
     environment:
-      - DATABASE_URL=sqlite:/app/backend/todo.db
+      - DATABASE_URL=sqlite:/app/todo.db
       - HOST=0.0.0.0
-    command: sh -c "cd /app/backend && sqlx migrate run && /app/backend/target/release/rust_todo_backend"
+    volumes:
+      - ./backend:/app
+    command: sh -c "sqlx migrate run && cargo run"
 
   frontend:
     build:

@@ -5,14 +5,20 @@ WORKDIR /app
 # Install sqlx-cli
 RUN cargo install sqlx-cli
 
-# Copy source code
-COPY ./backend /app/backend
+# Copy Cargo files first for better caching
+COPY ./backend/Cargo.toml ./
 
-WORKDIR /app/backend
+# Create a dummy main.rs to build dependencies
+RUN mkdir src && echo "fn main() {}" > src/main.rs
 
-# Build the application
+# Build dependencies (this layer will be cached)
 RUN cargo build --release
+RUN rm -rf src
+
+# The actual source code will be mounted as a volume
+# This allows for hot reloading during development
 
 EXPOSE 3000
 
-CMD ["/app/backend/target/release/rust_todo_backend"]
+# Default command - will be overridden by docker-compose
+CMD ["cargo", "run"]
